@@ -21,7 +21,7 @@ function ThankYou({ firstName, winner }) {
               mystery! Here is your <strong>golden ticket</strong>.
             </p>
             <p className="highlight-text">
-              Present this golden ticket at the bar for something special.
+              Present this golden ticket to the shuttle volunteer for something special.
             </p>
           </>
         )}
@@ -42,7 +42,7 @@ function ThankYou({ firstName, winner }) {
               <strong>golden ticket</strong>.
             </p>
             <p>
-              Present your golden ticket at the bar for something special.
+              Present your golden ticket to the shuttle volunteer for something special.
             </p>
           </>
         )}
