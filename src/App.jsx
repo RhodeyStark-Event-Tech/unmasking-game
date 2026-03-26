@@ -10,6 +10,7 @@ const ANSWER = 'THE BUTLER DID IT'
 function App() {
   const [screen, setScreen] = useState('registration')
   const [user, setUser] = useState({ firstName: '', email: '', busNumber: '' })
+  const [winner, setWinner] = useState(null)
 
   const handleRegister = useCallback((userData) => {
     setUser(userData)
@@ -23,7 +24,7 @@ function App() {
   const handleSubmit = useCallback(async (guess) => {
     if (guess.toUpperCase() === ANSWER) {
       try {
-        await fetch('/api/submit', {
+        const res = await fetch('/api/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -33,8 +34,11 @@ function App() {
             answer: guess,
           }),
         })
+        const data = await res.json()
+        setWinner(data.winner ?? null)
       } catch {
-        // Backend not configured yet — still show thank you
+        // Backend not configured yet — winner status unknown
+        setWinner(null)
       }
       setScreen('thankyou')
     }
@@ -44,7 +48,7 @@ function App() {
     <div className="app">
       <div className="mask-bg" aria-hidden="true" />
       <header className="app-header">
-        <div className="mask-icon" aria-hidden="true">🎭</div>
+        <img className="mask-icon" src="/assets/cloakedmystery.png" alt="" aria-hidden="true" width="120" height="102" />
         <h1 className="app-title">The Unmasking</h1>
         <p className="app-subtitle">A Masquerade Mystery</p>
       </header>
@@ -60,7 +64,7 @@ function App() {
           <Game answer={ANSWER} onSubmit={handleSubmit} />
         )}
         {screen === 'thankyou' && (
-          <ThankYou firstName={user.firstName} />
+          <ThankYou firstName={user.firstName} winner={winner} />
         )}
       </main>
 

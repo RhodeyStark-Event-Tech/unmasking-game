@@ -1,6 +1,3 @@
-import { generateTicketImage } from './ticket.js'
-import { sendTicketEmail } from './mailer.js'
-
 const ANSWER = 'THE BUTLER DID IT'
 
 // In-memory store of bus winners: { [busNumber]: { firstName, email, timestamp } }
@@ -31,18 +28,9 @@ export async function submitAnswer(req, res) {
 
   console.log(`🎭 WINNER! Bus ${busNumber}: ${firstName} (${email})`)
 
-  try {
-    const ticketBuffer = await generateTicketImage(firstName, email)
-    await sendTicketEmail(email, firstName, ticketBuffer)
-    console.log(`✉️  Golden ticket emailed to ${email}`)
-  } catch (err) {
-    console.error('Failed to send golden ticket email:', err.message)
-    // Still count them as winner even if email fails
-  }
-
   return res.status(200).json({
     correct: true,
     winner: true,
-    message: 'Congratulations! You are the first from your bus! Check your email for the golden ticket!',
+    message: 'Congratulations! You are the first from your bus!',
   })
 }
