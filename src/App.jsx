@@ -69,7 +69,7 @@ function App() {
       </main>
 
       <footer className="app-footer" role="contentinfo">
-        <p>&copy; 2026 The Unmasking</p>
+        <p>&copy; ILEA Star Awards 2026: The Unmasking</p>
       </footer>
     </div>
   )
