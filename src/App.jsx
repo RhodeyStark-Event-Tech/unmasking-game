@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import Registration from './components/Registration'
 import Premise from './components/Premise'
 import Game from './components/Game'
@@ -7,10 +7,23 @@ import './App.css'
 
 const ANSWER = 'THE BUTLER DID IT'
 
+function loadSession(key, fallback) {
+  try {
+    const stored = sessionStorage.getItem(key)
+    return stored ? JSON.parse(stored) : fallback
+  } catch {
+    return fallback
+  }
+}
+
 function App() {
-  const [screen, setScreen] = useState('registration')
-  const [user, setUser] = useState({ firstName: '', email: '', busNumber: '' })
-  const [winner, setWinner] = useState(null)
+  const [screen, setScreen] = useState(() => loadSession('screen', 'registration'))
+  const [user, setUser] = useState(() => loadSession('user', { firstName: '', email: '', busNumber: '' }))
+  const [winner, setWinner] = useState(() => loadSession('winner', null))
+
+  useEffect(() => { sessionStorage.setItem('screen', JSON.stringify(screen)) }, [screen])
+  useEffect(() => { sessionStorage.setItem('user', JSON.stringify(user)) }, [user])
+  useEffect(() => { sessionStorage.setItem('winner', JSON.stringify(winner)) }, [winner])
 
   const handleRegister = useCallback((userData) => {
     setUser(userData)

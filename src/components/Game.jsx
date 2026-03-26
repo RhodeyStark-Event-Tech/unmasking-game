@@ -1,12 +1,23 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 
+function loadLetters(totalLetters) {
+  try {
+    const stored = sessionStorage.getItem('letters')
+    if (stored) {
+      const parsed = JSON.parse(stored)
+      if (Array.isArray(parsed) && parsed.length === totalLetters) return parsed
+    }
+  } catch { /* ignore */ }
+  return Array(totalLetters).fill('')
+}
+
 function Game({ answer, onSubmit }) {
   // Split answer into words for display
   const words = answer.split(' ')
   const totalLetters = answer.replace(/ /g, '').length
 
   // Flat array of letter inputs
-  const [letters, setLetters] = useState(Array(totalLetters).fill(''))
+  const [letters, setLetters] = useState(() => loadLetters(totalLetters))
   const inputRefs = useRef([])
   const [submitting, setSubmitting] = useState(false)
 
@@ -15,6 +26,10 @@ function Game({ answer, onSubmit }) {
       inputRefs.current[0].focus()
     }
   }, [])
+
+  useEffect(() => {
+    sessionStorage.setItem('letters', JSON.stringify(letters))
+  }, [letters])
 
   const allFilled = letters.every((l) => l !== '')
 
