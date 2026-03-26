@@ -19,7 +19,7 @@ function Premise({ firstName, onBegin }) {
         </p>
         <p className="highlight-text">
           The first person from every bus to guess the right answer will be
-          emailed a <strong>golden ticket</strong>. Present this at the bar for
+          presented a <strong>golden ticket</strong>. Show this at the bar for
           something special.
         </p>
         <p className="closing-text">Good Luck and God Speed!</p>

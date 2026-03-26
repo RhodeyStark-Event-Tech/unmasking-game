@@ -39,7 +39,7 @@ function ThankYou({ firstName, winner }) {
             <p className="highlight-text">
               <strong>Stand by!</strong> If you are the first from your bus to
               submit the correct answer, you will receive a{' '}
-              <strong>golden ticket</strong> via email.
+              <strong>golden ticket</strong>.
             </p>
             <p>
               Present your golden ticket at the bar for something special.
