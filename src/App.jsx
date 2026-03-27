@@ -61,8 +61,8 @@ function App() {
     <div className="app">
       <div className="mask-bg" aria-hidden="true" />
       <header className="app-header">
-        <img className="mask-icon" src="/assets/cloakedmystery.png" alt="" aria-hidden="true" width="120" height="102" />
-        <h1 className="app-title">The Unmasking</h1>
+        <img className="mask-icon" src="/evening_unmasked.png" alt="" aria-hidden="true" width="120" height="78" />
+        <h1 className="app-title">An Evening Unmasked</h1>
         <p className="app-subtitle">A Masquerade Mystery</p>
       </header>
 
@@ -82,7 +82,7 @@ function App() {
       </main>
 
       <footer className="app-footer" role="contentinfo">
-        <p>&copy; ILEA Star Awards 2026: The Unmasking</p>
+        <p>&copy; ILEA Star Awards 2026: An Evening Unmasked</p>
       </footer>
     </div>
   )

@@ -7,7 +7,7 @@ function Premise({ firstName, onBegin }) {
 
       <div className="premise-text">
         <p>
-          Welcome to <strong>The Unmasking!</strong>
+          Welcome to <strong>An Evening Unmasked!</strong>
         </p>
         <p>
           Before we begin our epic journey, we need your help to solve a murder.
