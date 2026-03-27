@@ -18,7 +18,7 @@ function Premise({ firstName, onBegin }) {
           crime.
         </p>
         <p className="highlight-text">
-          The first person from every bus to guess the right answer will be
+          The first person from each bus to guess the right answer will be
           presented a <strong>golden ticket</strong>. Show this to the shuttle volunteer for
           something special.
         </p>
